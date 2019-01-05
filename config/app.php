@@ -228,4 +228,10 @@ return [
 
     ],
 
+    'PSE' => [
+        'login' => env('PSE_LOGIN'),
+        'tran_key' => env('PSE_TRAN_KEY'),
+        'url' => env('PSE_URL'),
+    ],
+
 ];
