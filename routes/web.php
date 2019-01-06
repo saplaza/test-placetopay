@@ -14,5 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', function () {
+    return view('welcome');
+});
 
 Route::get('/pse',  'PseController@index');
+Route::get('/list-payment-reference', 'PseController@ListPaymentReference');
+
+Route::post('/references-pay-add', 'PseController@createTransaction');

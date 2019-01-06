@@ -12,12 +12,19 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            
-                <div class="top-right links">
-                        <a href="{{ url('/home') }}">Home</a>
-                        <a href="{{ url('/pse') }}">Pse</a>
-                        <a href="{{ url('/list-payment-reference') }}">Pagos</a>
-                </div>
+                <nav class="navbar navbar-inverse">
+                  <div class="container-fluid">
+                    <div class="navbar-header">
+                      <a class="navbar-brand" href="#">Test PSE</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                      <li class=""><a href="{{ url('/home') }}">Home</a></li>
+                      <li><a href="{{ url('/pse') }}">PSE</a></li>
+                      <li><a href="{{ url('/list-payment-reference') }}">PAGOS</a></li>
+                      
+                    </ul>
+                  </div>
+                </nav>
           
 
             <div class="content">

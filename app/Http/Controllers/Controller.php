@@ -10,4 +10,19 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function login()
+    {
+    	return config("app.PSE.login");
+    }
+
+    public function url()
+    {
+    	return config("app.PSE.url");
+    }
+
+    public function tran_key()
+    {
+    	return config("app.PSE.tran_key");
+    }
 }

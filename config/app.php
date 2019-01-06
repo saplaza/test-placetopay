@@ -232,6 +232,7 @@ return [
         'login' => env('PSE_LOGIN'),
         'tran_key' => env('PSE_TRAN_KEY'),
         'url' => env('PSE_URL'),
+        'url_return' => env('PSE_URL_RETURN'),
     ],
 
 ];
