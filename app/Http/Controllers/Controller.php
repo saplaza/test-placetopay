@@ -25,4 +25,9 @@ class Controller extends BaseController
     {
     	return config("app.PSE.tran_key");
     }
+
+    public function seed()
+    {
+        return date( 'c' );
+    }
 }

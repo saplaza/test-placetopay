@@ -30,21 +30,18 @@ class PseController extends Controller
                 ->get();
             $respuestaGettrans = '';
             if (isset($_GET['returnpse'])) {
-                $login = $this->login();
-                $seed  = date( 'c' );
-                $tranKey = $this->tran_key();
-                $hashkey = sha1($seed.$tranKey,false);
-                $url_test = $this->url();
+                $hashkey = sha1($this->seed().$this->tran_key(),false);
+
                 $params = array(
                 'auth' => array(
-                    'login' => $login,
+                    'login' => $this->login(),
                     'tranKey' => $hashkey,
-                    'seed' => $seed,
+                    'seed' => $this->seed(),
                     'additional' => ''
                     ),
                     'transactionID' => $_SESSION['transactionID']
                 );
-                $client = new SoapClient($url_test,$params);
+                $client = new SoapClient($this->url(),$params);
                 $resulttransactionID = $client->__soapCall('getTransactionInformation', array($params));
                 
                 $respuestaGettrans = $resulttransactionID->getTransactionInformationResult->responseReasonText;
@@ -67,24 +64,20 @@ class PseController extends Controller
     }
 
     private function getBankList(){
-    	$login = $this->login();
-        $seed  = date( 'c' );
-        $tranKey = $this->tran_key();
-        $hashkey = sha1($seed.$tranKey,false);
-        $url_test = $this->url();
+        $hashkey = sha1($this->seed().$this->tran_key(),false);
 
         try {
         	$getListBankCache = \Cache::get('getListBankCache');
         	if (is_null($getListBankCache)) {
         		$params = array(
 	                'auth' => array(
-	                    'login' => $login,
+	                    'login' => $this->login(),
 	                    'tranKey' => $hashkey,
-	                    'seed' => $seed,
+	                    'seed' => $this->seed(),
 	                    'additional' => ''
 	                )
 	            );
-		    	$client = new SoapClient($url_test,$params);
+		    	$client = new SoapClient($this->url(),$params);
 		    	$getBankListArray = $client->__soapCall('getBankList', array($params));
 		    	$writegetListBankCache = \Cache::put('getListBankCache',$getBankListArray, 1440);
 		    	$getListBankCache = \Cache::get('getListBankCache');
@@ -128,17 +121,13 @@ class PseController extends Controller
         $resul = PaymentReference::create($todaInfo);
 
         if ($resul->id > 0) {
-            $login = $this->login();
-            $seed  = date( 'c' );
-            $tranKey = $this->tran_key();
-            $hashkey = sha1($seed.$tranKey,false);
-            $url_test = $this->url();
+            $hashkey = sha1($this->seed().$this->tran_key(),false);
 
             $params = array(
                 'auth' => array(
-                    'login' => $login,
+                    'login' => $this->login(),
                     'tranKey' => $hashkey,
-                    'seed' => $seed,
+                    'seed' => $this->seed(),
                     'additional' => ''
                 ),
                 'transaction' => array(
@@ -186,7 +175,7 @@ class PseController extends Controller
                     'additionalData' => ''
                 )
             );
-                $client = new SoapClient($url_test,$params);
+                $client = new SoapClient($this->url(),$params);
                 $resultado_create_transan = $client->__soapCall('createTransaction', array($params));
                 //dd($resul->id);
             if ($resultado_create_transan) {
