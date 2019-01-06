@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use SoapClient;
+use App\PaymentReference;
+use App\GeneratedResponse;
 
 class PseController extends Controller
 {	
 	public function index(){
-		dd($this->getBankList());
+        $getBankList = "";
+		$getBankList = $this->getBankList();
+        if(is_null($getBankList)){
+            dd($getBankList);
+        }
+        return view('Pse.index')->with(['getBankList'=>$getBankList]); 
 	}
+
 
     private function getBankList()
     {
