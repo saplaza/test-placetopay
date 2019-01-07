@@ -44,13 +44,11 @@ class PseController extends Controller
                 $respuestaGettrans = $resulttransactionID->getTransactionInformationResult->responseReasonText;
                 $responseReasonCode = $resulttransactionID->getTransactionInformationResult->responseReasonCode;
                 $this->UpdateState($_SESSION['geneRespID'],$respuestaGettrans,$responseReasonCode,$resulttransactionID->getTransactionInformationResult->returnCode);
-
-                $data = DB::table('payment_references')
+            }
+            $data = DB::table('payment_references')
                 ->join('generated_responses','generated_responses.payment_reference_id', '=', 'payment_references.id')
                 ->orderBy('payment_references.id', 'DESC')
                 ->get();
-                
-            }
         } catch (Exception $e) {
             \Log::debug($e->getMessage());
         }
