@@ -18,7 +18,7 @@
                       <a class="navbar-brand" href="#">Test PSE</a>
                     </div>
                     <ul class="nav navbar-nav">
-                      <li class=""><a href="{{ url('/home') }}">Home</a></li>
+                      <li class=""><a href="{{ url('/home') }}">HOME</a></li>
                       <li><a href="{{ url('/pse') }}">PSE</a></li>
                       <li><a href="{{ url('/list-payment-reference') }}">PAGOS</a></li>
                       
