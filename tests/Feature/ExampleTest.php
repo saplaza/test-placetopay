@@ -14,10 +14,19 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function testBasicTest()
+    public function testPagesInicio()
     {
         $response = $this->get('/');
-
+        
         $response->assertStatus(200);
+        $response->assertSee('Pse');
+    }
+
+    public function testPagesHome()
+    {
+        $response = $this->get('/home');
+        
+        $response->assertStatus(200);
+        $response->assertSee('Pse');
     }
 }
