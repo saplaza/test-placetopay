@@ -5,7 +5,12 @@ Pagos PSE
 @endsection
 
 @section('content')
-
+    @if(is_null($getBankList))
+    <div class="alert alert-warning alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Error:</strong> No se pudo obtener la lista de Entidades Financieras, por favor intente más tarde.
+    </div>
+    @endif
     <div class="">
         <div class="col-md-12">
 
@@ -31,9 +36,12 @@ Pagos PSE
                             <div class="col-sm-8">
                                 <span>
                                     <select class="form-control" id="bank_id" name="bank" required>
-                                        @foreach ($getBankList->item as $bank)
-                                            <option value="{{$bank->bankCode}}">{{$bank->bankName}}</option>
-                                        @endforeach
+                                        <option value="">Seleccione opción...</option>
+                                        @if(!is_null($getBankList))
+                                            @foreach ($getBankList->item as $bank)
+                                                <option value="{{$bank->bankCode}}">{{$bank->bankName}}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </span>
                             </div>

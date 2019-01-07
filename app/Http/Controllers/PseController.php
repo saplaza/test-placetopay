@@ -13,12 +13,13 @@ class PseController extends Controller
 	public function index(){
         $getBankList = "";
 		$getBankList = $this->getBankList();
+        $error = "";
         if(is_null($getBankList)){
-            dd($getBankList);
+            $error = "No se pudo obtener la lista de Entidades Financieras, por favor intente más tarde";
         }
 
 
-        return view('Pse.index')->with(['getBankList'=>$getBankList]); 
+        return view('Pse.index')->with(['getBankList'=>$getBankList,'error'=>$error]); 
 	}
 
     public function ListPaymentReference(){
